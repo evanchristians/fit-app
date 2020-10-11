@@ -1,6 +1,7 @@
 import {
   Button,
   Input,
+  Link,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -10,14 +11,19 @@ import {
   ModalOverlay,
   Text,
 } from "@chakra-ui/core";
-import React from "react";
+import React, { useState } from "react";
 
 const LoginModal = ({ isOpen, onClose }) => {
+  const [isLoginForm, setIsLoginForm] = useState(false);
   return (
     <>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay>
-          <ModalContent borderRadius={12} overflow="hidden" maxWidth={["calc(100vw - 24px)", 560, 560]}>
+          <ModalContent
+            borderRadius={12}
+            overflow="hidden"
+            maxWidth={["calc(100vw - 24px)", 560, 560]}
+          >
             <ModalHeader
               py={0}
               height={50}
@@ -27,22 +33,71 @@ const LoginModal = ({ isOpen, onClose }) => {
               color="white"
               fontWeight="medium"
             >
-              Modal Title
+              {isLoginForm ? "Login" : "Sign Up"}
               <ModalCloseButton display="flex" _focus={{ outline: "none" }} />
             </ModalHeader>
 
             <ModalBody py={10}>
-              <Text fontSize={18} mb={2}>HelloWorld</Text>
-              <Input mb={4} placeholder="Lorem Ipsum" />
-              <Text fontSize={18} mb={2}>HelloWorld</Text>
-              <Input placeholder="Lorem Ipsum" />
+              <Input
+                display={isLoginForm ? "none" : "block"}
+                mb={4}
+                placeholder="Username"
+              />
+              <Input
+                display={isLoginForm ? "none" : "block"}
+                mb={4}
+                placeholder="Email"
+              />
+              <Input
+                display={isLoginForm ? "block" : "none"}
+                mb={4}
+                placeholder="Username or Email"
+              />
+              <Input mb={4} placeholder="Password" />
+              <Input
+                display={isLoginForm ? "none" : "block"}
+                mb={4}
+                placeholder="Confirm Password"
+              />
+              {isLoginForm ? (
+                <Text width="100%">
+                  Don't have an account?{" "}
+                  <Link
+                    color="_green"
+                    onClick={() => {
+                      setIsLoginForm(false);
+                    }}
+                  >
+                    Sign Up
+                  </Link>
+                </Text>
+              ) : (
+                <Text>
+                  Already have an account?{" "}
+                  <Link
+                    color="_green"
+                    onClick={() => {
+                      setIsLoginForm(true);
+                    }}
+                  >
+                    Log in
+                  </Link>
+                </Text>
+              )}
             </ModalBody>
 
             <ModalFooter>
-              <Button mr={3} onClick={onClose}>
-                Close
+              <Button
+                mr={3}
+                fontWeight="medium"
+                color="gray.500"
+                onClick={onClose}
+              >
+                Cancel
               </Button>
-              <Button variant="ghost">Secondary Action</Button>
+              <Button bg="_green" color="white">
+                {isLoginForm ? "Login" : "Sign Up"}
+              </Button>
             </ModalFooter>
           </ModalContent>
         </ModalOverlay>
