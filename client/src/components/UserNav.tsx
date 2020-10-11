@@ -1,20 +1,22 @@
 import { Flex, Link } from "@chakra-ui/core";
-import NextLink from "next/link";
 import React from "react";
 
-interface IUserNav {}
+interface IUserNav {
+  onRegister: any;
+}
 
-const UserNav: React.FC<IUserNav> = ({}) => {
+const UserNav: React.FC<IUserNav> = ({ onRegister }) => {
   return (
     <Flex ml="auto">
-      <NextLink href="/register">
-        <Link
-          fontSize={18}
-          mr={4}
-          fontWeight="medium"
-          color="white"
-        >Register</Link>
-      </NextLink>
+      <Link
+        onClick={onRegister}
+        fontSize={18}
+        mr={4}
+        fontWeight="medium"
+        color="white"
+      >
+        Register
+      </Link>
     </Flex>
   );
 };

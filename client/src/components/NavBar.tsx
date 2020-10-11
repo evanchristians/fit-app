@@ -1,10 +1,11 @@
-import { Flex, Link } from "@chakra-ui/core";
+import { Flex, Link, useDisclosure } from "@chakra-ui/core";
 import NextLink from "next/link";
 import { withRouter } from "next/router";
 import React from "react";
 import ToUrl from "src/lib/ToUrl";
 import { Bounds } from "./Bounds";
 import { DarkModeSwitch } from "./DarkModeSwitch";
+import LoginModal from "./LoginModal";
 import UserNav from "./UserNav";
 
 interface INavItem {
@@ -17,6 +18,7 @@ interface INavBar {
 }
 
 const NavBar: React.FC<INavBar | any> = ({ navItems }) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Flex
       bg="_green"
@@ -36,8 +38,9 @@ const NavBar: React.FC<INavBar | any> = ({ navItems }) => {
             </NextLink>
           );
         })}
-        <UserNav />
+        <UserNav onRegister={onOpen} />
         <DarkModeSwitch />
+        <LoginModal isOpen={isOpen} onClose={onClose} />
       </Bounds>
     </Flex>
   );
