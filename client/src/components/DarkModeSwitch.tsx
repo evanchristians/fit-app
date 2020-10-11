@@ -7,7 +7,8 @@ export const DarkModeSwitch = () => {
     <IconButton
       size="xs"
       aria-label=""
-      ml="auto"
+      alignSelf="center"
+      justifySelf="flex-end"
       icon={isDark ? "sun" : "moon"}
       color={isDark ? "white" : "_green"}
       onClick={toggleColorMode}

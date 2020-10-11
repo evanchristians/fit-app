@@ -6,7 +6,7 @@ const fonts = {
   mono: `'Poppins', sans-serif`,
 };
 
-const breakpoints = ["40em", "52em", "64em"];
+const breakpoints = ["900px", "1440px"];
 
 const theme = {
   ...chakraTheme,

@@ -1,32 +1,20 @@
-import { Divider, Text } from "@chakra-ui/core";
+import { Divider } from "@chakra-ui/core";
+import { SlideFade } from "@chakra-ui/transition";
 import React from "react";
-import { Main } from "src/components/Main";
-import NavBar from "src/components/NavBar";
-import { NavItems } from "src/lib/Config.NavItems";
+import { Hero, SubHeading } from "src/components/Headings";
+import Main from "src/components/Main";
 import { Container } from "../components/Container";
 
 const Error = () => {
   return (
     <Container>
-      <NavBar navItems={NavItems} />
       <Main>
-        <Text
-          color="_green"
-          textAlign="center"
-          fontSize="6vw"
-          fontWeight="bold"
-        >
-          404
-        </Text>
+        <SlideFade initialOffset="10px" timeout={600} in={true}>
+          {(styles) => <Hero text="404" style={{ ...styles }} />}
+        </SlideFade>
         <Divider borderColor="_green50" />
-        <Text
-          color="_green"
-          textAlign="center"
-          fontSize="2.5vw"
-          fontWeight="bold"
-        >
-          Sorry, This Page Does Not Exist.
-        </Text>
+
+        <SubHeading text="Sorry, this page does not exist, please voetsek ♡" />
       </Main>
     </Container>
   );

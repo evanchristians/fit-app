@@ -1,13 +1,21 @@
-import { Stack } from '@chakra-ui/core'
+import { Stack } from "@chakra-ui/core";
+import { Bounds } from "./Bounds";
+import React from "react";
 
-export const Main = (props) => (
-  <Stack
-    position="relative"
-    spacing="1.5rem"
-    width="100%"
-    maxWidth="58rem"
-    pt="8rem"
-    px="1rem"
-    {...props}
-  />
-)
+interface IMain {}
+
+const Main: React.FC<IMain> = ({ children }) => (
+  <Bounds>
+    <Stack
+      position="relative"
+      spacing="1.5rem"
+      width="100%"
+      pt="8rem"
+      px="1rem"
+    >
+      {children}
+    </Stack>
+  </Bounds>
+);
+
+export default Main;

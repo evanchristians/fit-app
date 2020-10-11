@@ -1,11 +1,11 @@
 import { Flex } from "@chakra-ui/core";
 import React from "react";
 
-interface BoundsProps {}
+interface IBounds {}
 
-export const Bounds: React.FC<BoundsProps> = ({ children }) => {
+export const Bounds: React.FC<IBounds> = ({ children }) => {
   return (
-    <Flex maxWidth="58rem" width="100%" mx="auto" position="relative">
+    <Flex maxWidth={["58rem", "58rem", "65vw"]} width="100%" mx="auto" position="relative">
       {children}
     </Flex>
   );

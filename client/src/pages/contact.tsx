@@ -5,12 +5,12 @@ import { Hero, SubHeading } from "src/components/Headings";
 import Main from "src/components/Main";
 import { Container } from "../components/Container";
 
-const Index = () => {
+const Contact = () => {
   return (
     <Container>
       <Main>
         <SlideFade initialOffset="10px" timeout={600} in={true}>
-          {(styles) => <Hero text="Fit-App" style={{ ...styles }} />}
+          {(styles) => <Hero text="Contact" style={{ ...styles }} />}
         </SlideFade>
         <Divider borderColor="_green50" />
 
@@ -20,4 +20,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Contact;

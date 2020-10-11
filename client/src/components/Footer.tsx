@@ -1,3 +1,10 @@
-import { Flex } from '@chakra-ui/core'
+import { Flex } from "@chakra-ui/core";
+import React from "react";
 
-export const Footer = (props) => <Flex as="footer" py="8rem" {...props} />
+interface IFooter {}
+
+export const Footer: React.FC<IFooter> = ({ children }) => (
+  <Flex as="footer" py={8}>
+    {children}
+  </Flex>
+);

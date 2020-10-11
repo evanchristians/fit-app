@@ -1,42 +1,42 @@
 import { Flex, Link } from "@chakra-ui/core";
-import React from "react";
 import NextLink from "next/link";
+import { withRouter } from "next/router";
+import React from "react";
 import ToUrl from "src/lib/ToUrl";
 import { Bounds } from "./Bounds";
 import { DarkModeSwitch } from "./DarkModeSwitch";
-import { withRouter } from "next/router";
-import { useColorMode } from "@chakra-ui/core";
+import UserNav from "./UserNav";
 
-interface NavItemProps {
+interface INavItem {
   name: string;
   route?: string;
 }
 
-interface NavBarProps {
-  navItems: NavItemProps[];
+interface INavBar {
+  navItems: INavItem[];
 }
 
-const NavBar: React.FC<NavBarProps | any> = ({ navItems }) => {
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
+const NavBar: React.FC<INavBar | any> = ({ navItems }) => {
   return (
-    <Flex bg="_green" height={50} p={5} alignItems="center" width="100%">
+    <Flex
+      bg="_green"
+      height={50}
+      py={0}
+      px={5}
+      alignItems="center"
+      width="100%"
+    >
       <Bounds>
         {navItems.map((item, key) => {
           return (
             <NextLink key={key} href={item.route ?? ToUrl(item.name)}>
-              <Link
-                // opacity={isDark ? 0.7 : 1}
-                fontSize={18}
-                mr={4}
-                fontWeight="semibold"
-                color="white"
-              >
+              <Link fontSize={18} mr={4} fontWeight="medium" color="white">
                 {item.name}
               </Link>
             </NextLink>
           );
         })}
+        <UserNav />
         <DarkModeSwitch />
       </Bounds>
     </Flex>
