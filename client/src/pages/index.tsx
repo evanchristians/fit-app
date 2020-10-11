@@ -9,12 +9,12 @@ const Index = () => {
   return (
     <Container>
       <Main>
-        <SlideFade initialOffset="10px" timeout={600} in={true}>
-          {(styles) => <Hero text="Fit-App" style={{ ...styles }} />}
+        <SlideFade initialOffset="2px" timeout={300} in={true}>
+          {(styles) => <Hero style={{ ...styles }} text="Fit-App" />}
         </SlideFade>
         <Divider borderColor="_green50" />
 
-        <SubHeading text="Under Construction..." />
+        <SubHeading text="Under construction..." />
       </Main>
     </Container>
   );
