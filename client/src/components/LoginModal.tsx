@@ -9,6 +9,7 @@ import {
   ModalHeader,
   ModalOverlay,
   Text,
+  useToast,
 } from "@chakra-ui/core";
 import { Form, Formik } from "formik";
 import React, { useState } from "react";
@@ -17,26 +18,27 @@ import * as Yup from "yup";
 
 const SignupSchema = Yup.object().shape({
   username: Yup.string()
-    .min(2, "Too Short!")
+    .min(4, "Your username should be at least four(4) characters long")
     .max(50, "Too Long!")
     .required("Required"),
   email: Yup.string().email("Invalid email").required("Required"),
-  password: Yup.string().required("Password is required"),
+  password: Yup.string().required("Required"),
   confirmPassword: Yup.string()
-    .oneOf([Yup.ref("password"), undefined], "Passwords must match")
+    .oneOf(
+      [Yup.ref("password"), undefined],
+      "Passwords do not match"
+    )
     .required("Required"),
 });
 
 const LoginSchema = Yup.object().shape({
-  usernameEmail: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
+  usernameEmail: Yup.string().required("Required"),
   password: Yup.string().required("Required"),
 });
 
 const LoginModal = ({ isOpen, onClose }) => {
   const [isLoginForm, setIsLoginForm] = useState(false);
+  const toast = useToast();
 
   return (
     <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
@@ -57,18 +59,44 @@ const LoginModal = ({ isOpen, onClose }) => {
             }}
             onSubmit={async (values) => {
               await new Promise((resolve) => {
-                setTimeout(resolve, 2000);
+                setTimeout(resolve, 500);
               });
-              isLoginForm
-                ? console.log({
-                    usernameEmail: values.usernameEmail,
-                    password: values.password,
-                  })
-                : console.log({
-                    username: values.username,
-                    email: values.email,
-                    password: values.password,
-                  });
+
+              if (isLoginForm) {
+                console.error(
+                  "Login functionality is not yet fully implemented..."
+                ),
+                  console.log(
+                    {
+                      usernameEmail: values.usernameEmail,
+                    },
+                    { password: values.password }
+                  );
+                return toast({
+                  title: "Sorry!",
+                  description: "We could not log you in. {check console}",
+                  status: "error",
+                  duration: 4000,
+                  isClosable: true,
+                });
+              } else {
+                console.error(
+                  "Register functionality is not yet fully implemented..."
+                ),
+                  console.log(
+                    { username: values.username },
+                    { email: values.email },
+                    { password: values.password }
+                  );
+                return toast({
+                  title: "Sorry!",
+                  description:
+                    "We could not create this account. {check console}",
+                  status: "error",
+                  duration: 4000,
+                  isClosable: true,
+                });
+              }
             }}
           >
             {({ isSubmitting }) => (
