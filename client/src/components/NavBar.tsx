@@ -32,7 +32,13 @@ const NavBar: React.FC<INavBar | any> = ({ navItems }) => {
         {navItems.map((item, key) => {
           return (
             <NextLink key={key} href={item.route ?? ToUrl(item.name)}>
-              <Link fontSize={18} mr={4} fontWeight="medium" color="white">
+              <Link
+                lineHeight={2}
+                fontSize={[14, 16, 18]}
+                mr={4}
+                fontWeight="medium"
+                color="white"
+              >
                 {item.name}
               </Link>
             </NextLink>
