@@ -1,5 +1,6 @@
 import { ThemeProvider, CSSReset, ColorModeProvider } from "@chakra-ui/core";
 import Head from "next/head";
+import { Container } from "src/components/Container";
 import NavBar from "src/components/NavBar";
 import { NavItems } from "src/lib/Config.NavItems";
 
@@ -21,8 +22,10 @@ const MyApp = ({ Component, pageProps }) => {
             rel="stylesheet"
           />
         </Head>
-        <NavBar navItems={NavItems}></NavBar>
-        <Component {...pageProps} />
+        <Container>
+          <NavBar navItems={NavItems}></NavBar>
+          <Component {...pageProps} />
+        </Container>
       </ColorModeProvider>
     </ThemeProvider>
   );

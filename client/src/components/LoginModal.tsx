@@ -1,6 +1,8 @@
 import {
   Button,
   Input,
+  InputGroup,
+  InputRightElement,
   Link,
   Modal,
   ModalBody,
@@ -10,14 +12,19 @@ import {
   ModalHeader,
   ModalOverlay,
   Text,
+  Icon,
 } from "@chakra-ui/core";
+import { RiEyeCloseLine, RiEye2Line } from "react-icons/ri";
 import React, { useState } from "react";
 
 const LoginModal = ({ isOpen, onClose }) => {
   const [isLoginForm, setIsLoginForm] = useState(false);
+  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
+  const [isConfirmHidden, setIsConfirmHidden] = useState(true);
+
   return (
     <>
-      <Modal isOpen={isOpen} onClose={onClose}>
+      <Modal blockScrollOnMount={false} isOpen={isOpen} onClose={onClose}>
         <ModalOverlay>
           <ModalContent
             borderRadius={12}
@@ -53,12 +60,44 @@ const LoginModal = ({ isOpen, onClose }) => {
                 mb={4}
                 placeholder="Username or Email"
               />
-              <Input mb={4} placeholder="Password" />
-              <Input
-                display={isLoginForm ? "none" : "block"}
-                mb={4}
-                placeholder="Confirm Password"
-              />
+              <InputGroup>
+                <Input
+                  type={isPasswordHidden ? "password" : "text"}
+                  mb={4}
+                  placeholder="password"
+                />
+                <InputRightElement
+                  children={
+                    <Icon
+                      as={isPasswordHidden ? RiEyeCloseLine : RiEye2Line}
+                      color={isPasswordHidden ? "gray.300" : "_green"}
+                      onClick={() => {
+                        setIsPasswordHidden(!isPasswordHidden);
+                      }}
+                    />
+                  }
+                />
+              </InputGroup>
+              <InputGroup>
+                <Input
+                  type={isConfirmHidden ? "password" : "text"}
+                  display={isLoginForm ? "none" : "block"}
+                  mb={4}
+                  placeholder="Confirm Password"
+                />
+                <InputRightElement
+                  children={
+                    <Icon
+                      as={isConfirmHidden ? RiEyeCloseLine : RiEye2Line}
+                      color={isConfirmHidden ? "gray.300" : "_green"}
+                      onClick={() => {
+                        setIsConfirmHidden(!isConfirmHidden);
+                      }}
+                    />
+                  }
+                />
+              </InputGroup>
+
               {isLoginForm ? (
                 <Text width="100%">
                   Don't have an account?{" "}

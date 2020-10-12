@@ -8,7 +8,7 @@ export const Container = (props: any) => {
   const color = { light: 'black', dark: 'white' }
   return (
     <Flex
-      minHeight="100vh"
+      minH="100vh"
       direction="column"
       alignItems="center"
       justifyContent="flex-start"
