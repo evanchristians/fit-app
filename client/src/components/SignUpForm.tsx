@@ -1,17 +1,17 @@
 import {
-  ModalHeader,
-  ModalCloseButton,
-  ModalBody,
-  Link,
-  ModalFooter,
   Button,
-  useToast,
+  Link,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
   Text,
+  useToast,
 } from "@chakra-ui/core";
-import { Formik, Form } from "formik";
+import { Form, Formik } from "formik";
 import React from "react";
-import FormInput from "./FormInput";
+import { RiCloseLine } from "react-icons/ri";
 import * as Yup from "yup";
+import FormInput from "./FormInput";
 
 interface ISignUpForm {
   form: string;
@@ -37,14 +37,11 @@ const SignUpForm: React.FC<ISignUpForm> = ({ form, toggleForm, onClose }) => {
 
   return (
     <Formik
-      validateOnChange={true}
       validationSchema={SignupSchema}
       initialValues={{
-        usernameEmail: "",
         email: "",
         username: "",
         password: "",
-        confirmPassword: "",
       }}
       onSubmit={async (values) => {
         await new Promise((resolve) => {
@@ -79,7 +76,22 @@ const SignUpForm: React.FC<ISignUpForm> = ({ form, toggleForm, onClose }) => {
             fontWeight="medium"
           >
             Sign up
-            <ModalCloseButton display="flex" _focus={{ outline: "none" }} />
+            <Button
+              p={0}
+              variant="ghost"
+              ml="auto"
+              onClick={onClose}
+              display="flex"
+              _focus={{ outline: "none" }}
+              _hover={{
+                bg: "_green200",
+              }}
+              _active={{
+                bg: "_green200",
+              }}
+            >
+              <RiCloseLine size={24}/>
+            </Button>
           </ModalHeader>
 
           <ModalBody py={4}>
@@ -105,12 +117,22 @@ const SignUpForm: React.FC<ISignUpForm> = ({ form, toggleForm, onClose }) => {
           </ModalBody>
 
           <ModalFooter>
-            <Button mr={4} color="gray.600" variant="ghost" onClick={onClose}>
+            <Button
+              fontWeight="medium"
+              mr={4}
+              color="gray.600"
+              variant="ghost"
+              onClick={onClose}
+            >
               Cancel
             </Button>
             <Button
               bg="_green"
               color="white"
+              fontWeight="medium"
+              _hover={{
+                bg: "_green200",
+              }}
               type="submit"
               isLoading={isSubmitting}
             >

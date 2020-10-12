@@ -15,6 +15,7 @@ const theme = {
     black: "#16161D",
     _green: "#16A085",
     _green50: "#16A08555",
+    _green200: "#149077",
   },
   fonts,
   breakpoints,
