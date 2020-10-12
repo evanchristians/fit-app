@@ -10,7 +10,7 @@ const Main: React.FC<IMain> = ({ children }) => (
       position="relative"
       spacing="1.5rem"
       width="100%"
-      pt="8rem"
+      pt={[12, "6rem", "8rem"]}
       px="1rem"
     >
       {children}

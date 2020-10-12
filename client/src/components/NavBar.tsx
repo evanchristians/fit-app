@@ -5,7 +5,7 @@ import React from "react";
 import ToUrl from "src/lib/ToUrl";
 import { Bounds } from "./Bounds";
 import { DarkModeSwitch } from "./DarkModeSwitch";
-import LoginModal from "./LoginModal";
+import UserModal from "./UserModal";
 import UserNav from "./UserNav";
 
 interface INavItem {
@@ -46,7 +46,7 @@ const NavBar: React.FC<INavBar | any> = ({ navItems }) => {
         })}
         <UserNav onRegister={onOpen} />
         <DarkModeSwitch />
-        <LoginModal isOpen={isOpen} onClose={onClose} />
+        <UserModal isOpen={isOpen} onClose={onClose} />
       </Bounds>
     </Flex>
   );
