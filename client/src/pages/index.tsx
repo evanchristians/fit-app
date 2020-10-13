@@ -36,7 +36,7 @@ const Index = () => {
   }, [_refetch]);
 
   useEffect(() => {
-    console.log(networkStatus, NetworkStatus.refetch);
+    if (networkStatus !== NetworkStatus.refetch) setIsRefetching(false);
   }, [networkStatus]);
 
   useEffect(() => {
@@ -55,7 +55,9 @@ const Index = () => {
         <Divider borderColor="_green50" />
 
         <SubHeading text="Data Fetch Test" />
-        <Text color="gray.400" textAlign="center">(Without Caching)</Text>
+        <Text color="gray.400" textAlign="center">
+          (Without Caching)
+        </Text>
         <Text
           textAlign="center"
           fontWeight="medium"
@@ -123,13 +125,14 @@ const Index = () => {
               setIsLoaded(false);
               await Sleep(600);
               refetch();
-              setIsRefetching(false);
               setIsLoaded(true);
             }}
           >
             Refetch
           </Button>
-          <Text mt={2} color="gray.400">(Similar behaviour to Filtering, Pagination... etc.)</Text>
+          <Text mt={2} color="gray.400">
+            (Similar behaviour to Filtering, Pagination... etc.)
+          </Text>
         </Box>
       </Main>
     </>
