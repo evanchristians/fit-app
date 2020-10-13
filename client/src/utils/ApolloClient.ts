@@ -9,7 +9,7 @@ export const GET = gql`
   query GetRates($currency: String!) {
     rates(currency: $currency) {
       currency
-      name
+      # name
     }
   }
 `;

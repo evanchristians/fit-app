@@ -64,7 +64,7 @@ const Index = () => {
           flexWrap="wrap"
           p={4}
           borderRadius={2}
-          minHeight={250}
+          minHeight={[350, 150, 120]}
         >
           {loading ? (
             <SlideFade initialOffset="2px" timeout={500} in={true}>
@@ -78,7 +78,7 @@ const Index = () => {
             </SlideFade>
           ) : data ? (
             <Box textAlign="center">
-              {data.rates.slice(0, 30).map((d, key) => {
+              {data.rates.slice(0, 60).map((d, key) => {
                 return (
                   <SlideFade
                     initialOffset="2px"
@@ -87,13 +87,14 @@ const Index = () => {
                   >
                     {(styles) => (
                       <Tag
+                        size="sm"
                         style={styles}
-                        // color="_green"
                         key={key}
-                        my={2}
-                        mx={2}
+                        my={1}
+                        mx={1}
                       >
-                        {d.name ? d.name + " (" : null} {d.currency} {d.name ? ")" : null}
+                        {d.name ? d.name + " (" : null} {d.currency}{" "}
+                        {d.name ? ")" : null}
                       </Tag>
                     )}
                   </SlideFade>
