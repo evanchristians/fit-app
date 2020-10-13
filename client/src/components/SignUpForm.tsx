@@ -68,6 +68,7 @@ const SignUpForm: React.FC<ISignUpForm> = ({ form, toggleForm, onClose }) => {
           <ModalHeader
             borderRadius="8px 8px 0 0"
             py={0}
+            px={4}
             height={50}
             display="flex"
             alignItems="center"
@@ -77,6 +78,7 @@ const SignUpForm: React.FC<ISignUpForm> = ({ form, toggleForm, onClose }) => {
           >
             Sign up
             <Button
+              size="xs"
               p={0}
               variant="ghost"
               ml="auto"

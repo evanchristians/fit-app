@@ -13,9 +13,9 @@ const theme = {
   colors: {
     ...chakraTheme.colors,
     black: "#16161D",
-    _green: "#16A085",
-    _green50: "#16A08555",
-    _green200: "#149077",
+    _green: "#149077",
+    _green50: "#14907755",
+    _green200: "#117e68",
   },
   fonts,
   breakpoints,
