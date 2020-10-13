@@ -55,7 +55,7 @@ const Index = () => {
           (Without Caching)
         </Text>
         <Text textAlign="center" fontWeight="medium" fontSize={24}>
-          Dummy GraphQL Currencies
+          Dummy GraphQL Currency Data
         </Text>
         <Flex
           mt={2}
