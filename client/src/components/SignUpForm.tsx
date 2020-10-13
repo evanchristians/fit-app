@@ -55,8 +55,8 @@ const SignUpForm: React.FC<ISignUpForm> = ({ form, toggleForm, onClose }) => {
           { password: values.password }
         );
         return toast({
-          title: "Sorry!",
-          description: "We could not create this account. {check console}",
+          title: "An error occurred!",
+          description: `We could not create an account for ${values.email}. Please try again later.`,
           status: "error",
           duration: 4000,
           isClosable: true,

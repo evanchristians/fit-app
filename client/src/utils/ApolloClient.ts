@@ -6,9 +6,10 @@ export const apolloClient = new ApolloClient({
 });
 
 export const GET = gql`
-  query GetRates {
-    rates(currency: "USD") {
+  query GetRates($currency: String!) {
+    rates(currency: $currency) {
       currency
+      name
     }
   }
 `;

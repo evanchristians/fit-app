@@ -17,19 +17,15 @@ import { Sleep } from "src/lib/Sleep";
 import { GET } from "src/utils/ApolloClient";
 
 const Index = () => {
-  const {
-    loading,
-    data = { rates: [{ currency: "" }] },
-    refetch: _refetch,
-    networkStatus,
-  } = useQuery(GET, {
-    variables: {},
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isRefetching, setIsRefetching] = useState(false);
+  const { loading, data, refetch: _refetch, networkStatus } = useQuery(GET, {
+    variables: { currency: "ZAR" },
     notifyOnNetworkStatusChange: true,
     fetchPolicy: "no-cache",
   });
 
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isRefetching, setIsRefetching] = useState(false);
+  console.log(data);
 
   const refetch = useCallback(() => {
     setTimeout(() => _refetch(), 0);
@@ -58,12 +54,7 @@ const Index = () => {
         <Text color="gray.400" textAlign="center">
           (Without Caching)
         </Text>
-        <Text
-          textAlign="center"
-          fontWeight="medium"
-          fontSize={24}
-          color="gray.700"
-        >
+        <Text textAlign="center" fontWeight="medium" fontSize={24}>
           Dummy GraphQL Currencies
         </Text>
         <Flex
@@ -73,7 +64,7 @@ const Index = () => {
           flexWrap="wrap"
           p={4}
           borderRadius={2}
-          minHeight={190}
+          minHeight={250}
         >
           {loading ? (
             <SlideFade initialOffset="2px" timeout={500} in={true}>
@@ -97,12 +88,12 @@ const Index = () => {
                     {(styles) => (
                       <Tag
                         style={styles}
-                        color="_green"
+                        // color="_green"
                         key={key}
                         my={2}
                         mx={2}
                       >
-                        {d.currency}
+                        {d.name ? d.name + " (" : null} {d.currency} {d.name ? ")" : null}
                       </Tag>
                     )}
                   </SlideFade>

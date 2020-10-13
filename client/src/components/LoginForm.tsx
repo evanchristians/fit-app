@@ -48,8 +48,8 @@ const LoginForm: React.FC<ILoginForm> = ({ form, toggleForm, onClose }) => {
           { password: values.password }
         );
         return toast({
-          title: "Sorry!",
-          description: "We could not create this account. {check console}",
+          title: "An error occurred!",
+          description: `We could not log you in. Please try again later`,
           status: "error",
           duration: 4000,
           isClosable: true,
