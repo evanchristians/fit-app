@@ -1,10 +1,10 @@
-import { ApolloProvider } from "@apollo/client";
 import { ColorModeProvider, CSSReset, ThemeProvider } from "@chakra-ui/core";
+import withApolloClient from "../utils/WithApollo";
+import { ApolloProvider } from "@apollo/react-hooks";
 import Head from "next/head";
-import { Container } from "src/components/Container";
-import NavBar from "src/components/NavBar";
-import { NavItems } from "src/lib/Config.NavItems";
-import { apolloClient } from "src/utils/ApolloClient";
+import { Container } from "src/components/layout/Container";
+import NavBar from "src/components/modules/NavBar";
+import { NavItems } from "src/configs/NavItems";
 import theme from "../theme";
 
 export interface AppProps {
@@ -12,9 +12,9 @@ export interface AppProps {
   pageProps: any;
 }
 
-const MyApp = ({ Component, pageProps }) => {
+const MyApp = ({ Component, pageProps, apollo }) => {
   return (
-    <ApolloProvider client={apolloClient}>
+    <ApolloProvider client={apollo}>
       <ThemeProvider theme={theme}>
         <ColorModeProvider>
           <CSSReset />
@@ -34,4 +34,4 @@ const MyApp = ({ Component, pageProps }) => {
   );
 };
 
-export default MyApp;
+export default withApolloClient(MyApp);

@@ -2,8 +2,8 @@ import { Divider } from "@chakra-ui/core";
 import { WarningTwoIcon } from "@chakra-ui/icons";
 import { SlideFade } from "@chakra-ui/transition";
 import React from "react";
-import { Hero, SubHeading } from "src/components/Headings";
-import Main from "src/components/Main";
+import { Hero, SubHeading } from "src/components/modules/Headings";
+import Main from "src/components/layout/Main";
 
 const Error = () => {
   return (

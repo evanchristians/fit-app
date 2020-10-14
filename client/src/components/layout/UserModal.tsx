@@ -1,8 +1,8 @@
 import { Modal, ModalContent, ModalOverlay } from "@chakra-ui/core";
 import { Fade, SlideFade } from "@chakra-ui/transition";
 import React, { useEffect, useState } from "react";
-import LoginForm from "./LoginForm";
-import SignUpForm from "./SignUpForm";
+import LoginForm from "../modules/LoginForm";
+import SignUpForm from "../modules/SignUpForm";
 
 const UserModal = ({ isOpen, onClose }) => {
   const [form, toggleForm] = useState("signup");

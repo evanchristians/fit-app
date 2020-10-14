@@ -1,8 +1,8 @@
 import { Divider } from "@chakra-ui/core";
 import { SlideFade } from "@chakra-ui/transition";
 import React from "react";
-import { Hero, SubHeading } from "src/components/Headings";
-import Main from "src/components/Main";
+import { Hero, SubHeading } from "src/components/modules/Headings";
+import Main from "src/components/layout/Main";
 import Head from "next/head";
 
 const Contact = () => {

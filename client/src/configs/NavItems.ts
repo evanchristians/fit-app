@@ -3,3 +3,5 @@ export const NavItems = [
   { name: "About", route: "/about" },
   { name: "Contact", route: "/contact" },
 ];
+
+export default NavItems
