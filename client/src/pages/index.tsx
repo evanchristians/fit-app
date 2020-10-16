@@ -1,13 +1,14 @@
-import { Divider, CircularProgress, Box, Tag } from "@chakra-ui/core";
+import { Divider, CircularProgress, Box, Tag, Text, Flex } from "@chakra-ui/core";
 import { SlideFade } from "@chakra-ui/transition";
 import Head from "next/head";
 import React from "react";
 import { Hero, SubHeading } from "src/components/modules/Headings";
 import Main from "src/components/layout/Main";
 import { useUsersQuery } from "src/generated/graphql";
+import { ErrorMessage } from "formik";
 
 const Index = () => {
-  const { data, loading } = useUsersQuery();
+  const { data, loading, error } = useUsersQuery();
   return (
     <>
       <Head>
@@ -44,7 +45,15 @@ const Index = () => {
               );
             })}
           </Box>
-        ) : null}
+        ) : error ? (
+          <Flex justifyContent="center">
+            <Text bg="red.100" py={4} px={10} mt={6} borderRadius={12} color="red.800" fontSize={18}>
+              {error.message}
+            </Text>
+          </Flex>
+        ) : (
+          <Text>No Results</Text>
+        )}
       </Main>
     </>
   );
