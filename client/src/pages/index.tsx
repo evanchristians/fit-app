@@ -1,14 +1,25 @@
-import { Divider, CircularProgress, Box, Tag, Text, Flex } from "@chakra-ui/core";
+import {
+  Box,
+  CircularProgress,
+  Divider,
+  Flex,
+  Tag,
+  Text
+} from "@chakra-ui/core";
 import { SlideFade } from "@chakra-ui/transition";
 import Head from "next/head";
-import React from "react";
-import { Hero, SubHeading } from "src/components/modules/Headings";
+import React, { useEffect } from "react";
 import Main from "src/components/layout/Main";
-import { useUsersQuery } from "src/generated/graphql";
-import { ErrorMessage } from "formik";
+import { Hero, SubHeading } from "src/components/modules/Headings";
+import { useUserAddedSubscription, useUsersQuery } from "src/generated/graphql";
 
 const Index = () => {
   const { data, loading, error } = useUsersQuery();
+  const sub = useUserAddedSubscription();
+
+  useEffect(() => {
+    console.log(sub);
+  }, [sub]);
   return (
     <>
       <Head>
@@ -35,9 +46,10 @@ const Index = () => {
                   initialOffset="2px"
                   timeout={400 + 5 * key}
                   in={true}
+                  key={d.id}
                 >
                   {(styles) => (
-                    <Tag size="sm" style={styles} key={d.id} my={1} mx={1}>
+                    <Tag size="sm" style={styles} my={1} mx={1}>
                       {d.firstName} {d.lastName}
                     </Tag>
                   )}
@@ -47,7 +59,15 @@ const Index = () => {
           </Box>
         ) : error ? (
           <Flex justifyContent="center">
-            <Text bg="red.100" py={4} px={10} mt={6} borderRadius={12} color="red.800" fontSize={18}>
+            <Text
+              bg="red.100"
+              py={4}
+              px={10}
+              mt={6}
+              borderRadius={12}
+              color="red.800"
+              fontSize={18}
+            >
               {error.message}
             </Text>
           </Flex>

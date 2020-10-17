@@ -1,9 +1,9 @@
 import { theme as chakraTheme } from "@chakra-ui/core";
 
 const fonts = {
-  heading: `'IBM Plex Sans', sans-serif`,
-  body: `'IBM Plex Sans', sans-serif`,
-  mono: `'IBM Plex Sans', sans-serif`,
+  heading: `'IBM Plex Sans', 'Noto Color Emoji', sans-serif`,
+  body: `'IBM Plex Sans', 'Noto Color Emoji', sans-serif`,
+  mono: `'IBM Plex Sans', 'Noto Color Emoji', sans-serif`,
 };
 
 const breakpoints = ["900px", "1440px"];

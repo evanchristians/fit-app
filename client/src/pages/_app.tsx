@@ -23,6 +23,10 @@ const MyApp = ({ Component, pageProps, apollo }) => {
               href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;700&display=swap"
               rel="stylesheet"
             />
+            <link
+              href="https://gitcdn.xyz/repo/googlefonts/noto-emoji/master/fonts/NotoColorEmoji.ttf"
+              rel="stylesheet"
+            />
           </Head>
           <Container>
             <NavBar navItems={NavItems}></NavBar>

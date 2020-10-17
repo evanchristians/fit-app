@@ -10,9 +10,9 @@ import {
 import { Form, Formik } from "formik";
 import React from "react";
 import { RiCloseLine } from "react-icons/ri";
+import { useRegisterMutation } from "src/generated/graphql";
 import * as Yup from "yup";
 import FormInput from "./FormInput";
-import { useCreateUserMutation } from "src/generated/graphql";
 
 interface ISignUpForm {
   form: string;
@@ -21,7 +21,7 @@ interface ISignUpForm {
 }
 
 const SignUpForm: React.FC<ISignUpForm> = ({ form, toggleForm, onClose }) => {
-  const [createUser] = useCreateUserMutation();
+  const [register, { error }] = useRegisterMutation();
   const toast = useToast();
   const SignupSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -32,11 +32,11 @@ const SignUpForm: React.FC<ISignUpForm> = ({ form, toggleForm, onClose }) => {
       .min(4, "Your last name should be at least four(4) characters long")
       .max(50, "Too Long!")
       .required("Required"),
-    // email: Yup.string().email("Invalid email").required("Required"),
-    // password: Yup.string().required("Required"),
-    // confirmPassword: Yup.string()
-    //   .oneOf([Yup.ref("password"), undefined], "Passwords do not match")
-    //   .required("Required"),
+    email: Yup.string().email("Invalid email").required("Required"),
+    password: Yup.string().required("Required"),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref("password"), undefined], "Passwords do not match")
+      .required("Required"),
   });
 
   if (form !== "signup") return null;
@@ -48,16 +48,15 @@ const SignUpForm: React.FC<ISignUpForm> = ({ form, toggleForm, onClose }) => {
         firstName: "",
         lastName: "",
         email: "",
-        username: "",
         password: "",
+        confirmPassword: "",
       }}
       onSubmit={async (values) => {
-        const user = {
-          firstName: values.firstName,
-          lastName: values.lastName,
-        };
+        await register({ variables: { ...values } });
 
-        await createUser({ variables: { ...user } });
+        if (error) {
+          console.log(error);
+        }
 
         onClose();
         return toast({
@@ -105,14 +104,13 @@ const SignUpForm: React.FC<ISignUpForm> = ({ form, toggleForm, onClose }) => {
           <ModalBody py={4}>
             <FormInput name="firstName" label="First Name" />
             <FormInput name="lastName" label="Last Name" />
-            {/* <FormInput name="username" label="Username" />
             <FormInput name="email" label="Email" />
             <FormInput isPassword name="password" label="Password" />
             <FormInput
               isPassword
               name="confirmPassword"
               label="Confirm Password"
-            /> */}
+            />
             <Text mt={6}>
               Already have an account?{" "}
               <Link
